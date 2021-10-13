@@ -4,14 +4,13 @@ const hundredName = ['' ,'cento', 'duzentos', 'trezentos', 'quatrocentos', 'quin
 
 function numbersToWords() {
     let arrayNum = []
-    let n
 
     for (let i = 0; i <= 1000; i++) {
         let n = String(i)
         if (i < 20) {
             arrayNum.push(tenName[i])
         } else if (i < 100) {
-            if (n[1] === 0) {
+            if (n[1] == 0) {
                 arrayNum.push(`${unitName[n[0]]}`)
             } else {
                 arrayNum.push(`${unitName[n[0]]} e ${tenName[n[1]]}`)
@@ -34,6 +33,33 @@ function numbersToWords() {
             arrayNum.push('mil')
         }
     }
+
     return arrayNum
 }
-numbersToWords()
+
+const arrayNumeroExtenso = numbersToWords()
+
+const secaoEntradaTexto = document.querySelector('.secao_entradas_resultado')
+
+const secaoResultadoTexto = document.querySelector('.secao_resultado_texto')
+const textonumeroExtenso = arrayNumeroExtenso.join(', ')
+secaoResultadoTexto.innerHTML = `${textonumeroExtenso}`
+
+function converteNumPalavra() {
+    secaoEntradaTexto.innerHTML = ''
+    let numeroEntrada = Number(document.querySelector('.secao_entradas_entrada').value)
+    let numeroExtenso = arrayNumeroExtenso[numeroEntrada]
+    secaoEntradaTexto.innerHTML = `${numeroExtenso}`
+}
+
+function verificaEntrada() {
+    let entradaRecebidaComprimento = document.querySelector('.secao_entradas_entrada').value.length
+    let entradaRecebidaValor = Number(document.querySelector('.secao_entradas_entrada').value)
+    if (entradaRecebidaComprimento < 1) {
+        secaoEntradaTexto.innerHTML = `Por favor, insira um número`
+    } else if (entradaRecebidaValor > 1000) {
+        secaoEntradaTexto.innerHTML = `Erro. Tente novamente`
+    } else {
+        converteNumPalavra()
+    }
+}

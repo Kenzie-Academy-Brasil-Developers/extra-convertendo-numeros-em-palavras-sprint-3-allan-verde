@@ -8,6 +8,21 @@
     <title>Conversor</title>
 </head>
 <body>
+    <header>
+        <h1>Conversor de Números em Palavras</h1>
+    </header>
+    <section>
+        <div class="secao_entradas">
+            <label for="">Digite um número entre 0 e 1.000</label>
+            <input type="number" name="" class="secao_entradas_entrada" min="0" max="1000">
+            <button onclick="verificaEntrada()">converter</button>
+            <p class="secao_entradas_resultado">Ex: 344</p>
+        </div>
+        <div class="secao_resultado">
+            <h2>Abaixo, todos os número de 0 a 1000 por extenso:</h2>
+            <p class="secao_resultado_texto"></p>
+        </div>
+    </section>
     <script src="script.js"></script>
 </body>
 </html>
